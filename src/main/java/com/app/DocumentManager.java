@@ -105,7 +105,7 @@ public class DocumentManager {
     		return request
     			.getContainsContents()
     			.stream()
-    			.anyMatch(t -> t.equals(document.getContent()));
+    			.anyMatch(t -> document.getContent() != null && document.getContent().contains(t));
         }	
     	
     	private static boolean filterByAuthorIds(Document document, SearchRequest request) {

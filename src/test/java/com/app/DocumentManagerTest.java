@@ -25,7 +25,7 @@ class DocumentManagerTest {
 	
 	@BeforeEach
 	public void cleanStorage() {
-//		documentManager.documents.clear();
+		documentManager.documents.clear();
 	}
 	
 	@Test
@@ -90,16 +90,16 @@ class DocumentManagerTest {
 		@DisplayName("Find by containing content")
 		void test_find_by_containing_content() {
 			Document document = Document.builder()
-					.content("Text").build();
+					.content("Some Text").build();
 			
 			Document document2 = Document.builder()
-					.content("seg").build();
+					.content("Text").build();
 			
 			documentManager.save(document);
 			documentManager.save(document2);
 			
 			assertThat(documentManager
-					.search(SearchRequest.builder().containsContents(List.of("seg", "Text")).build())
+					.search(SearchRequest.builder().containsContents(List.of("Te")).build())
 					).contains(document2, document).hasSize(2);
 		}
 		
